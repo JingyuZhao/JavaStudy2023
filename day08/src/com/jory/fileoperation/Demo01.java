@@ -6,8 +6,11 @@ import java.io.IOException;
 public class Demo01 {
     public static void main(String[] args) {
 //        printFileSeparator();
-        fileCreate();
+//        fileCreate();
+//        fileDelete();
+        fileAll();
     }
+
     public static void printFileSeparator(){
         System.out.println(File.pathSeparator);
         System.out.println(File.separator);
@@ -71,6 +74,36 @@ public class Demo01 {
         }
     }
     public static void fileDelete(){
-
+        File file = new File("/Users/jory/Desktop/test/test.txt");
+        boolean isDelete = file.delete();
+        if (isDelete) {
+            System.out.println("删除文件成功.");
+        } else {
+            System.out.println("删除文件失败.");
+        }
+        System.out.println("-------------------------------");
+        //删除文件夹
+        //注意:只有空文件夹才能被删除
+        File test = new File("/Users/jory/Desktop/test/test02/test03");
+        boolean delete1 = test.delete();
+        if (delete1) {
+            System.out.println("删除文件夹成功.");
+        } else {
+            System.out.println("删除文件夹失败.");
+        }
+    }
+    public static void fileAll(){
+        File root = new File("/Users/jory/Desktop/workspace");
+        String[] fileList = root.list();
+        for (String info :
+                fileList) {
+            System.out.println(info);
+        }
+        System.out.println("--------------------");
+        //遍历文件夹 得到file对象
+        File[] dFiles = root.listFiles();
+        for (File dFile : dFiles) {
+            System.out.println(dFile);
+        }
     }
 }
